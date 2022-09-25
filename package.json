@@ -1,0 +1,20 @@
+{
+  "name": "babylonjsDemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "aeolus.zhang <aeoluj@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.8.3",
+    "vite": "^3.1.3"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^5.25.0",
+    "@babylonjs/loaders": "^5.25.0"
+  }
+}
