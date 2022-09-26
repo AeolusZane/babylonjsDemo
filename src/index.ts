@@ -1,5 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
-
+import "@babylonjs/loaders";
 const canvas = document.querySelector<HTMLCanvasElement>("#babylon-view")!;
 
 
@@ -18,16 +18,28 @@ class GameScene extends BABYLON.Scene {
     constructor(engine:BABYLON.WebGPUEngine){
         super(engine);
         this.createCamera();
-        this.createBox();
+        this.createLight();
+        // this.createBox();
+        this.loadModel();
     }
 
     createCamera(){
-        const camera = new BABYLON.ArcRotateCamera("camera",Math.PI/4,Math.PI/4,5,BABYLON.Vector3.Zero(),this);
+        const camera = new BABYLON.ArcRotateCamera("camera",Math.PI/4,Math.PI/4,700,BABYLON.Vector3.Zero(),this);
         camera.attachControl(canvas,true);
+    }
+
+    createLight(){
+        const light = new BABYLON.HemisphericLight("light",new BABYLON.Vector3(0,1,0),this);
     }
 
     createBox(){
         const box = BABYLON.MeshBuilder.CreateBox("box",{ size: 2 },this);
+    }
+
+    async loadModel(){
+        await BABYLON.SceneLoader.AppendAsync("/models/","gozanti.glb",this);
+        const glow = new BABYLON.GlowLayer("glow",this);
+        glow.intensity = 10;
     }
 }
 
